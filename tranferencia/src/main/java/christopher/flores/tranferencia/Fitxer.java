@@ -13,16 +13,19 @@ public class Fitxer {
         this.nom = nom;
     }
 
-    public byte[] getContigut() {
+    public byte[] getContingut() {
         File file = new File(nom);
         
         try{
             if (file.exists() && file.isFile()) {
                 Path path = file.toPath();
                 contingut = Files.readAllBytes(path);
+            } else {
+                file = null;
+                System.out.println("Error llegint el fitxer del client: " + file);
             } 
         } catch (IOException ioe) {
-            System.out.println("Error llegint el fitxer del client: " + file);
+            System.out.println(ioe.getMessage());
         }
         return contingut;
     }
